@@ -3,6 +3,7 @@ archetype: http
 language: go
 capabilities:
   - postgres
+  - cache
 ci: github
 scp: github
 inputs:
@@ -11,4 +12,5 @@ inputs:
   maintainers:
     - '@JarenDamm'
   pool_size: 25
+  repo_name: jaren-test-10
   service_name: jt-10

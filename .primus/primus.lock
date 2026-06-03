@@ -51,6 +51,23 @@ modules:
       - file: go.mod
         regionId: postgres-deps
         hash: sha256:509d57f3091a947335f292f98b6379a041509f92bf3b8004099feee926f93aa6
+  - id: redis-go-http
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//redis-go-http?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    managed:
+      - path: internal/app/cap_redis.go
+        hash: sha256:cba2606e09dec06ef685254ea86a7e3bc367467fcc7b04fc0fae3ee7851930ef
+    scaffolded:
+      - path: internal/app/cap_redis_example.go
+        hash: sha256:3794a7b9671d9e7e3eef2fa2a417ae3529b219818f973f4b16a01f44e79f5a59
+    regions:
+      - file: compose.yaml
+        regionId: redis-service
+        hash: sha256:e5d33125dfc9205232f9fca3521bce036fab2d2b6d98f759aa6a5fbd58a52309
+      - file: go.mod
+        regionId: redis-deps
+        hash: sha256:0fd511af61c4871e185e3520dd54de7f3c4ff74b70fe9af7f60394f3c5136512
   - id: cicd-github
     version: 1.0.0
     source: git::https://github.com/JarenDamm/primus-modules.git//cicd-github?ref=main
@@ -65,5 +82,5 @@ modules:
     scaffolded:
       - path: .github/CODEOWNERS
         hash: sha256:8c3454a304a60a35aa953b3fc8bdb4b0e18c7ba3d13d6312a462620be01d4130
-inputsHash: sha256:4e485239fd953f147c20ea5010e3739eff6c2ce486f01a6b1e7340bebe7588f9
-generatedAt: "2026-06-03T15:21:15Z"
+inputsHash: sha256:7b86eaf0782aa7ccf7ea8eed11e65e9f8aae70cac99c728df2b387be577ed65c
+generatedAt: "2026-06-03T15:32:09Z"
