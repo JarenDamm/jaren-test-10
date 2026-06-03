@@ -1,0 +1,8 @@
+# BEGIN MANAGED: postgres-service
+postgres:
+  image: postgres:16
+  environment:
+    POSTGRES_PASSWORD: insecure
+  ports:
+    - "5432:5432"
+# END MANAGED

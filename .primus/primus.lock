@@ -1,0 +1,69 @@
+apiVersion: primus/v2
+modules:
+  - id: language-go-http
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//language-go-http?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    managed:
+      - path: internal/app/app.go
+        hash: sha256:d6022d409a41a7e9814b5f3e7165c126b89e86c92689bd6f5c52bf7163882fd0
+      - path: internal/app/app_test.go
+        hash: sha256:5eee1eda3c262046258bef10ad639e20f78cfb51d9c79cf818fc28d83f18716d
+      - path: Dockerfile
+        hash: sha256:ae85d533e085e7178843b47315e7bebc022fafa99fe4e586926a4d1cc1a0f0df
+      - path: .dockerignore
+        hash: sha256:a3c5747e3df8c52d713bfa4499b98ad421d0ba001313a8ad72454b88f3bf36c0
+      - path: .golangci.yml
+        hash: sha256:27dbd09b4debb2fbb12e3ae74c090fe5025de74ae58fd64424eebb840efb105b
+      - path: Makefile
+        hash: sha256:1e05d2122eec209e063bb319a5df42a9f68d72c10d3fcb93dee50f09a6b47b3b
+    scaffolded:
+      - path: cmd/server/main.go
+        hash: sha256:466a33a8e6b8362ef34628cba0db51b07c9dc8b0d7a70dd08964e956792bcd8d
+      - path: internal/app/hello.go
+        hash: sha256:145bb60b68db70af299f1cff8261ce57b78198ee53a312172f153c1bb5e9b44d
+      - path: internal/app/hello_test.go
+        hash: sha256:dfea21ca960df1d8e829513d04288f330362ce56022c835ec20e65deae473f3f
+      - path: internal/config/config.go
+        hash: sha256:a415b892b5d3139c93ecfffd7b9f46c7c59dbac57e5d5bf0e8e9307a4045fb3b
+      - path: internal/logging/logging.go
+        hash: sha256:d0745c34998d0130569722669c9fc1d60ebfaa61859ec4ea26d3735d79f95cd9
+    regions:
+      - file: go.mod
+        regionId: go-module
+        hash: sha256:5995d56531c0a99e3f4d9db4fe5cb9f85cca3c5c69352d014c5a4d0db0afcf18
+  - id: postgres-go-http
+    version: 1.4.2
+    source: git::https://github.com/JarenDamm/primus-modules.git//postgres-go-http?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    managed:
+      - path: internal/app/cap_postgres.go
+        hash: sha256:091c48918e8a798fbb407dd9a898ceade13c1912632931d3bf614c8d81e92af1
+      - path: .github/workflows/db-tests.yml
+        hash: sha256:9104135e89f5eed6885b9bb754885e21f0739d8398f0fd2af983964c7e75e145
+    scaffolded:
+      - path: internal/app/cap_postgres_example.go
+        hash: sha256:211dd290cbb436f972e57969386c56a618aff6d5fbab2a3e3aaa039ee71810ef
+    regions:
+      - file: compose.yaml
+        regionId: postgres-service
+        hash: sha256:6d196e91f225bd30a9d0b79c036279b115b604130e830fdfb2d2085f3ce65cb3
+      - file: go.mod
+        regionId: postgres-deps
+        hash: sha256:509d57f3091a947335f292f98b6379a041509f92bf3b8004099feee926f93aa6
+  - id: cicd-github
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//cicd-github?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    managed:
+      - path: .github/workflows/ci.yml
+        hash: sha256:f7a64e3fef01d9d95378ea2aae170886fbc8cf30adb3cfd51675a635ace97765
+  - id: scp-github
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//scp-github?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    scaffolded:
+      - path: .github/CODEOWNERS
+        hash: sha256:8c3454a304a60a35aa953b3fc8bdb4b0e18c7ba3d13d6312a462620be01d4130
+inputsHash: sha256:4e485239fd953f147c20ea5010e3739eff6c2ce486f01a6b1e7340bebe7588f9
+generatedAt: "2026-06-03T15:21:15Z"

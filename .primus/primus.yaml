@@ -1,0 +1,14 @@
+apiVersion: primus/v2
+archetype: http
+language: go
+capabilities:
+  - postgres
+ci: github
+scp: github
+inputs:
+  go_version: "1.24"
+  language: go
+  maintainers:
+    - '@JarenDamm'
+  pool_size: 25
+  service_name: jt-10

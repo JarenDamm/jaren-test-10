@@ -1,0 +1,7 @@
+# Owner module: language-go-http
+# Keep the build context small and avoid shipping dev-only artifacts.
+.git/
+*.test
+*.exe
+bin/
+.primus/

@@ -1,0 +1,10 @@
+name: db-tests
+on:
+  push:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "pool size 25 (owned by postgres-go-http)"

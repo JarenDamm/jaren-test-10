@@ -1,0 +1,16 @@
+# Owner module: language-go-http
+#
+# Default linter set for the generated service. This file is managed by the
+# language module — re-apply refreshes it. If you intend to diverge, declare an
+# override in .primus/primus.yaml so a required update surfaces the conflict
+# rather than silently overwriting your changes.
+run:
+  timeout: 5m
+
+linters:
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused

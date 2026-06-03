@@ -1,0 +1,52 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - run: go build ./...
+      - run: go test ./...
+      # Lint config (.golangci.yml) is shipped by the language module; the
+      # workflow that runs it stays owned here (cicd-github).
+      - uses: golangci/golangci-lint-action@v6
+
+  primus-check-required:
+    # Soft nag (issue #53): warns when a locked module is below its
+    # catalog `required:` floor — surfaces a never-merged required-update
+    # PR without blocking the build. Flip `--strict` in the run line below
+    # for hard enforcement.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Check catalog required: floors"
+        # PRIMUS_CATALOG must be configured as a repo or org variable to
+        # enable this check. When unset, the step skips with exit 0 — same
+        # posture as the primus-not-on-PATH skip below: an un-configured
+        # nag shouldn't show up red on every PR. The job is the nag; the
+        # red badge people actually need is below_floor rows from a real
+        # check run, not a config-missing badge.
+        run: |
+          if [[ -z "${PRIMUS_CATALOG:-}" ]]; then
+            echo "PRIMUS_CATALOG (repo or org variable) is not set — skipping check-required nag. Set it to a catalog source URI to enable per-PR floor checking."
+            exit 0
+          fi
+          if ! command -v primus >/dev/null 2>&1; then
+            echo "primus not on PATH — install it in the runner image to enable this nag."
+            exit 0
+          fi
+          primus check-required --catalog "$PRIMUS_CATALOG" --repo .
+        env:
+          PRIMUS_CATALOG: ${{ vars.PRIMUS_CATALOG }}
