@@ -1,5 +1,19 @@
 apiVersion: primus/v2
 modules:
+  - id: cicd-github
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//cicd-github?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    managed:
+      - path: .github/workflows/ci.yml
+        hash: sha256:f7a64e3fef01d9d95378ea2aae170886fbc8cf30adb3cfd51675a635ace97765
+  - id: scp-github
+    version: 1.0.0
+    source: git::https://github.com/JarenDamm/primus-modules.git//scp-github?ref=main
+    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
+    scaffolded:
+      - path: .github/CODEOWNERS
+        hash: sha256:8c3454a304a60a35aa953b3fc8bdb4b0e18c7ba3d13d6312a462620be01d4130
   - id: language-go-http
     version: 1.0.0
     source: git::https://github.com/JarenDamm/primus-modules.git//language-go-http?ref=main
@@ -68,19 +82,5 @@ modules:
       - file: go.mod
         regionId: redis-deps
         hash: sha256:0fd511af61c4871e185e3520dd54de7f3c4ff74b70fe9af7f60394f3c5136512
-  - id: cicd-github
-    version: 1.0.0
-    source: git::https://github.com/JarenDamm/primus-modules.git//cicd-github?ref=main
-    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
-    managed:
-      - path: .github/workflows/ci.yml
-        hash: sha256:f7a64e3fef01d9d95378ea2aae170886fbc8cf30adb3cfd51675a635ace97765
-  - id: scp-github
-    version: 1.0.0
-    source: git::https://github.com/JarenDamm/primus-modules.git//scp-github?ref=main
-    sourceCommit: 67cc594a366991561380be3c6758f3c306e76256
-    scaffolded:
-      - path: .github/CODEOWNERS
-        hash: sha256:8c3454a304a60a35aa953b3fc8bdb4b0e18c7ba3d13d6312a462620be01d4130
 inputsHash: sha256:7b86eaf0782aa7ccf7ea8eed11e65e9f8aae70cac99c728df2b387be577ed65c
-generatedAt: "2026-06-03T15:32:09Z"
+generatedAt: "2026-06-03T15:32:34Z"
